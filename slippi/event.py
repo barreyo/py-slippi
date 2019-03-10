@@ -1,5 +1,5 @@
-from slippi.util import *
 from slippi.id import *
+from slippi.util import *
 
 
 class EventType(IntEnum):

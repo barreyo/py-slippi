@@ -183,3 +183,4 @@ class Game(Base):
             CONSOLE = 'console'
             DOLPHIN = 'dolphin'
             NETWORK = 'network'
+            NINTENDONT = 'nintendont'
