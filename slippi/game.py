@@ -140,7 +140,9 @@ class Game(Base):
         @classmethod
         def _parse(cls, json):
             d = json['startAt'].rstrip('\x00') # workaround for Nintendont/Slippi<1.5 bug
-            if d[-1] in ('Z', 'z'):
+            if d[-1] != 'z':
+                d += 'z'
+            if d[-1] == 'Z':
                 d = d[:-1] + '+0000'
             try:
                 date = datetime.strptime(d, '%Y-%m-%dT%H:%M:%S%z')
