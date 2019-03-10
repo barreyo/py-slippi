@@ -1,10 +1,12 @@
-import io, sys, ubjson
+import io
+import sys
 from datetime import datetime
+
+import ubjson
 
 import slippi.event as evt
 from slippi.id import InGameCharacter
 from slippi.util import *
-
 
 # The first frame of the game is indexed -123, counting up to zero (which is when the word "GO" appears). But since players actually get control before frame zero (!!!), we need to record these frames.
 FIRST_FRAME_INDEX = -123
@@ -138,7 +140,7 @@ class Game(Base):
         @classmethod
         def _parse(cls, json):
             d = json['startAt'].rstrip('\x00') # workaround for Nintendont/Slippi<1.5 bug
-            if d[-1] == 'Z':
+            if d[-1] in ('Z', 'z'):
                 d = d[:-1] + '+0000'
             try:
                 date = datetime.strptime(d, '%Y-%m-%dT%H:%M:%S%z')
